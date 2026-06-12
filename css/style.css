@@ -445,7 +445,7 @@ input:focus, select:focus, textarea:focus {
 .showtime-info-bar { background: var(--color-bg-alt); border-radius: var(--radius-md); padding: var(--spacing-md); margin-bottom: var(--spacing-md); border: 1px solid var(--color-border); }
 
 /* MOVIE DETAIL – base styles (responsive overrides in css/movies.css) */
-.movie-detail { display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: var(--spacing-xl); margin: var(--spacing-lg) 0; align-items: start; }
+.movie-detail { display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: var(--spacing-xl); margin: var(--spacing-lg) auto; align-items: start; max-width: 1100px; }
 .movie-detail-poster { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); width: 100%; }
 .movie-detail-poster img { width: 100%; height: auto; }
 .movie-detail-poster-placeholder { width: 100%; aspect-ratio: 2/3; background: linear-gradient(135deg, #2a2a2a, #444); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
@@ -459,7 +459,7 @@ input:focus, select:focus, textarea:focus {
 .movie-detail-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
 
 /* CHECKOUT */
-.checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: var(--spacing-xl); margin-top: var(--spacing-lg); align-items: start; }
+.checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: var(--spacing-xl); margin-top: var(--spacing-lg); align-items: start; max-width: 1100px; margin-left: auto; margin-right: auto; }
 .order-summary { background: var(--color-bg-card); border-radius: var(--radius-md); padding: var(--spacing-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); position: sticky; top: 80px; }
 .order-details { margin-top: var(--spacing-md); }
 .order-detail-row { display: flex; justify-content: space-between; padding: var(--spacing-xs) 0; font-size: var(--font-size-sm); border-bottom: 1px solid var(--color-border); }
@@ -481,7 +481,8 @@ input:focus, select:focus, textarea:focus {
 .confirmation-container h1 { font-size: var(--font-size-xxl); margin-bottom: var(--spacing-sm); color: var(--color-success); }
 .confirmation-subtitle { color: var(--color-text-muted); margin-bottom: var(--spacing-lg); }
 .confirmation-card { background: var(--color-bg-card); border-radius: var(--radius-md); padding: var(--spacing-lg); text-align: left; border: 1px solid var(--color-border); margin-bottom: var(--spacing-lg); box-shadow: var(--shadow-sm); }
-.confirmation-actions { display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap; }
+.confirmation-actions { display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap; padding: 0 var(--spacing-md); }
+.confirmation-actions .btn { flex: 1 1 auto; min-width: 140px; max-width: 220px; text-align: center; justify-content: center; }
 .confirmation-detail-row { display: flex; justify-content: space-between; padding: var(--spacing-xs) 0; border-bottom: 1px solid var(--color-border); font-size: var(--font-size-sm); }
 .confirmation-detail-row:last-child { border-bottom: none; }
 
