@@ -78,6 +78,17 @@
     width: 100%;
     justify-content: center;
   }
+
+  /* Filmkarten: Details + Buchen Buttons kleiner auf Mobile */
+  .movie-card-actions {
+    padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm);
+    gap: 4px;
+  }
+  .movie-card-actions .btn {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
   .main-nav {
     position: fixed;
     top: 0;
