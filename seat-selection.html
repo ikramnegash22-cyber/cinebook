@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sitzplatzauswahl – CineBook</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="CineBook Startseite">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html">Filme</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li><a href="my-bookings.html">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="loginModal">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+      <p class="modal-hint">Demo: <strong>user1 / user123</strong></p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li aria-current="page">Sitzplatzauswahl</li>
+        </ol>
+      </nav>
+      <div class="booking-steps" aria-label="Buchungsschritte">
+        <div class="step active" aria-current="step"><span class="step-num">1</span><span class="step-label">Sitzplatz</span></div>
+        <div class="step-divider" aria-hidden="true"></div>
+        <div class="step"><span class="step-num">2</span><span class="step-label">Kasse</span></div>
+        <div class="step-divider" aria-hidden="true"></div>
+        <div class="step"><span class="step-num">3</span><span class="step-label">Bestaetigung</span></div>
+      </div>
+      <div id="showtimeInfo" class="showtime-info-bar"><p class="loading">Vorstellung wird geladen...</p></div>
+      <div class="seat-selection-layout">
+        <div class="screen-container" aria-hidden="true">
+          <div class="screen">Leinwand</div>
+          <div class="screen-glow"></div>
+        </div>
+        <div class="seat-legend" role="list" aria-label="Legende">
+          <div class="legend-item" role="listitem"><span class="seat seat-available" aria-hidden="true"></span><span>Verfuegbar</span></div>
+          <div class="legend-item" role="listitem"><span class="seat seat-selected" aria-hidden="true"></span><span>Ausgewaehlt</span></div>
+          <div class="legend-item" role="listitem"><span class="seat seat-booked" aria-hidden="true"></span><span>Besetzt</span></div>
+          <div class="legend-item" role="listitem"><span class="seat seat-vip" aria-hidden="true"></span><span>VIP</span></div>
+          <div class="legend-item" role="listitem"><span class="seat seat-accessible" aria-hidden="true">♿</span><span>Rollstuhl</span></div>
+        </div>
+        <div id="seatMap" class="seat-map" role="group" aria-label="Sitzplan">
+          <p class="loading">Sitzplan wird geladen...</p>
+        </div>
+        <aside class="booking-sidebar" aria-label="Buchungszusammenfassung">
+          <h2>Ihre Auswahl</h2>
+          <div class="ticket-type-selector">
+            <h3>Ticketart</h3>
+            <div class="ticket-types" role="radiogroup" aria-label="Ticketart waehlen">
+              <label class="ticket-type-option"><input type="radio" name="ticketType" value="normal" checked/><span class="ticket-type-label"><span class="ticket-name">Normal</span><span id="priceNormal" class="ticket-price"></span></span></label>
+              <label class="ticket-type-option"><input type="radio" name="ticketType" value="student"/><span class="ticket-type-label"><span class="ticket-name">Student</span><span id="priceStudent" class="ticket-price"></span></span></label>
+              <label class="ticket-type-option"><input type="radio" name="ticketType" value="senior"/><span class="ticket-type-label"><span class="ticket-name">Senior</span><span id="priceSenior" class="ticket-price"></span></span></label>
+            </div>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:8px">
+              🌟 <strong style="color:var(--color-seat-vip)">VIP-Sitze</strong> (goldene Reihe) werden automatisch zum VIP-Preis berechnet: <span id="priceVip" style="font-weight:600;color:var(--color-seat-vip)"></span>
+            </p>
+          </div>
+          <div class="selection-summary">
+            <h3>Zusammenfassung</h3>
+            <div id="selectedSeatsList" class="selected-seats-list" aria-live="polite"><p class="placeholder-text">Noch keine Plaetze ausgewaehlt</p></div>
+            <div class="price-summary">
+              <div class="price-row"><span>Ausgewaehlte Plaetze:</span><span id="selectedCount">0</span></div>
+              <div class="price-row total"><strong>Gesamt:</strong><strong id="totalPrice">0,00 EUR</strong></div>
+            </div>
+          </div>
+          <button id="proceedToCheckout" class="btn btn-primary btn-block" disabled>Weiter zur Kasse</button>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook</p>
+      <nav aria-label="Footer Navigation"><a href="#">Impressum</a><a href="#">Datenschutz</a></nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

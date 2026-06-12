@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spielzeiten verwalten – CineBook Admin</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/admin.css"/>
+  <link rel="stylesheet" href="../css/accessibility.css"/>
+</head>
+<body class="admin-body">
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" role="navigation" aria-label="Admin Navigation">
+      <div class="admin-logo">🎬 <span>CineBook Admin</span></div>
+      <nav>
+        <ul class="admin-nav">
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="movies.html">🎬 Filme</a></li>
+          <li><a href="showtimes.html" class="active" aria-current="page">📅 Spielzeiten</a></li>
+          <li><a href="users.html">👥 Benutzer</a></li>
+          <li><a href="../clerk/reservations.html">🎟️ Reservierungen</a></li>
+          <li><a href="../index.html">🏠 Zur Website</a></li>
+        </ul>
+      </nav>
+      <div class="admin-sidebar-footer">
+        <span id="adminUserName"></span>
+        <button id="logoutBtn" class="btn btn-sm btn-outline">Abmelden</button>
+      </div>
+    </aside>
+    <div class="admin-main">
+      <header class="admin-header" role="banner">
+        <h1>Spielzeiten verwalten</h1>
+        <div class="admin-header-actions">
+          <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+          <button id="addShowtimeBtn" class="btn btn-primary">➕ Spielzeit hinzufuegen</button>
+        </div>
+      </header>
+      <main id="main-content" class="admin-content">
+        <div class="admin-toolbar">
+          <div class="filter-group">
+            <label for="movieFilterAdmin">Film</label>
+            <select id="movieFilterAdmin"><option value="">Alle Filme</option></select>
+          </div>
+          <div class="filter-group">
+            <label for="dateFilterAdmin">Datum</label>
+            <input type="date" id="dateFilterAdmin"/>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table id="showtimesTable" class="admin-table" aria-label="Spielzeitenliste">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Film</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Zeit</th>
+                <th scope="col">Saal</th>
+                <th scope="col">Format</th>
+                <th scope="col">Sprache</th>
+                <th scope="col">Verfuegbar</th>
+                <th scope="col">Barrierefrei</th>
+                <th scope="col">Aktionen</th>
+              </tr>
+            </thead>
+            <tbody id="showtimesTbody"><tr><td colspan="10" class="table-empty">Wird geladen...</td></tr></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Showtime Modal -->
+  <div id="showtimeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="showtimeModalTitle">
+    <div class="modal-overlay" id="showtimeModalOverlay"></div>
+    <div class="modal-content modal-large">
+      <button class="modal-close" id="closeShowtimeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="showtimeModalTitle">Spielzeit hinzufuegen</h2>
+      <form id="showtimeForm" novalidate>
+        <input type="hidden" id="showtimeId" name="id"/>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="stMovieId">Film *</label>
+            <select id="stMovieId" name="movieId" required><option value="">Film waehlen...</option></select>
+          </div>
+          <div class="form-group">
+            <label for="stDate">Datum *</label>
+            <input type="date" id="stDate" name="date" required/>
+          </div>
+          <div class="form-group">
+            <label for="stTime">Uhrzeit *</label>
+            <input type="time" id="stTime" name="time" required/>
+          </div>
+          <div class="form-group">
+            <label for="stHall">Saal *</label>
+            <select id="stHall" name="hall" required>
+              <option value="Saal 1">Saal 1 (80 Pl.)</option>
+              <option value="Saal 2">Saal 2 (80 Pl.)</option>
+              <option value="Saal 3">Saal 3 – IMAX (100 Pl.)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="stFormat">Format *</label>
+            <select id="stFormat" name="format" required>
+              <option value="2D">2D</option>
+              <option value="IMAX">IMAX</option>
+              <option value="3D">3D</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="stLanguage">Sprache *</label>
+            <select id="stLanguage" name="language" required>
+              <option value="Deutsch">Deutsch</option>
+              <option value="OV">OV</option>
+              <option value="OmU">OmU</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="stAccessible" name="accessible"/>
+              <span>♿ Barrierefreie Plaetze</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancelShowtimeModal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal-overlay" id="deleteModalOverlay"></div>
+    <div class="modal-content modal-small">
+      <h2 id="deleteModalTitle">Spielzeit loeschen</h2>
+      <p id="deleteModalText">Moechten Sie diese Spielzeit wirklich loeschen?</p>
+      <div class="modal-actions">
+        <button id="cancelDelete" class="btn btn-outline">Abbrechen</button>
+        <button id="confirmDelete" class="btn btn-danger">Loeschen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/movies.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

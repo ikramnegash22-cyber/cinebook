@@ -1,0 +1,189 @@
+/* ============================================================
+   CineBook – Movies specific styles
+   ============================================================ */
+
+/* Movie Detail Page */
+.movie-detail-page { padding: var(--spacing-lg) 0 var(--spacing-xl); }
+
+.movie-hero {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
+}
+
+.movie-hero .movie-detail {
+  color: #fff;
+}
+
+.movie-hero .movie-detail-title { color: #fff; }
+.movie-hero .movie-detail-description { color: #ccc; }
+.movie-hero .credit-item label { color: #aaa; }
+.movie-hero .credit-item span { color: #fff; }
+
+/* Showtimes in movie detail */
+.movie-showtimes-section { margin-top: var(--spacing-xl); }
+.movie-showtimes-section h2 { font-size: var(--font-size-xl); margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-sm); border-bottom: 2px solid var(--color-primary); }
+
+/* Trailer button */
+.btn-trailer {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+.btn-trailer:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Movie filter page */
+.movies-page { padding-bottom: var(--spacing-xl); }
+
+.movies-page .filter-bar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 10;
+}
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-muted);
+  grid-column: 1 / -1;
+}
+.no-results-icon { font-size: 3rem; margin-bottom: var(--spacing-sm); }
+
+/* Showtime item in movie detail */
+.showtime-item {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  transition: box-shadow var(--transition);
+}
+.showtime-item:hover { box-shadow: var(--shadow-md); }
+.showtime-item-left { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+.showtime-item-time { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary); }
+.showtime-item-info { display: flex; gap: var(--spacing-sm); align-items: center; font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.showtime-item-seats { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.showtime-item-seats.low { color: var(--color-danger); font-weight: 600; }
+
+/* ============================================================
+   MOVIE DETAIL – responsives Layout und Description Fix
+   ============================================================ */
+
+/* Poster links (max 280px), Info-Spalte nimmt den restlichen Platz.
+   Ueberschreibt die Regel in style.css mit verbessertem Grid. */
+.movie-detail {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+  align-items: start;
+}
+
+.movie-detail-poster {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+}
+
+.movie-detail-poster img { width: 100%; height: auto; }
+
+.movie-detail-poster-placeholder {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: linear-gradient(135deg, #2a2a2a, #444);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+}
+
+/* min-width: 0 ist entscheidend: verhindert, dass CSS-Grid
+   die Spalte auf den overflow-Inhalt zusammenstaucht */
+.movie-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 0;
+  width: 100%;
+}
+
+.movie-detail-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.movie-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+/* Description: nutzt die volle verfuegbare Breite der Info-Spalte */
+.movie-detail-description {
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  word-wrap: break-word;
+}
+
+.movie-detail-credits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.credit-item label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  display: block;
+}
+
+.credit-item span { font-size: var(--font-size-sm); }
+
+.movie-detail-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .movie-detail {
+    grid-template-columns: minmax(160px, 220px) 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Mobile: untereinander stapeln */
+@media (max-width: 700px) {
+  .movie-detail {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .movie-detail-poster {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .movie-detail-description {
+    font-size: 1rem;
+  }
+}

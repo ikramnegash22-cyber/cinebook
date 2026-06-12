@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benutzer verwalten – CineBook Admin</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/admin.css"/>
+  <link rel="stylesheet" href="../css/accessibility.css"/>
+</head>
+<body class="admin-body">
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" role="navigation" aria-label="Admin Navigation">
+      <div class="admin-logo">🎬 <span>CineBook Admin</span></div>
+      <nav>
+        <ul class="admin-nav">
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="movies.html">🎬 Filme</a></li>
+          <li><a href="showtimes.html">📅 Spielzeiten</a></li>
+          <li><a href="users.html" class="active" aria-current="page">👥 Benutzer</a></li>
+          <li><a href="../clerk/reservations.html">🎟️ Reservierungen</a></li>
+          <li><a href="../index.html">🏠 Zur Website</a></li>
+        </ul>
+      </nav>
+      <div class="admin-sidebar-footer">
+        <span id="adminUserName"></span>
+        <button id="logoutBtn" class="btn btn-sm btn-outline">Abmelden</button>
+      </div>
+    </aside>
+    <div class="admin-main">
+      <header class="admin-header" role="banner">
+        <h1>Benutzer verwalten</h1>
+        <div class="admin-header-actions">
+          <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+          <button id="addUserBtn" class="btn btn-primary">➕ Benutzer hinzufuegen</button>
+        </div>
+      </header>
+      <main id="main-content" class="admin-content">
+        <div class="admin-toolbar">
+          <div class="search-box">
+            <label for="userSearch" class="sr-only">Benutzer suchen</label>
+            <input type="search" id="userSearch" placeholder="Benutzer suchen..."/>
+          </div>
+          <div class="filter-group">
+            <label for="roleFilter">Rolle</label>
+            <select id="roleFilter">
+              <option value="">Alle Rollen</option>
+              <option value="admin">Admin</option>
+              <option value="clerk">Clerk</option>
+              <option value="customer">Kunde</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table id="usersTable" class="admin-table" aria-label="Benutzerliste">
+            <thead><tr><th scope="col">ID</th><th scope="col">Benutzername</th><th scope="col">Name</th><th scope="col">E-Mail</th><th scope="col">Rolle</th><th scope="col">Erstellt</th><th scope="col">Status</th><th scope="col">Aktionen</th></tr></thead>
+            <tbody id="usersTbody"><tr><td colspan="8" class="table-empty">Wird geladen...</td></tr></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="userModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="userModalTitle">
+    <div class="modal-overlay" id="userModalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeUserModal" aria-label="Schliessen">&times;</button>
+      <h2 id="userModalTitle">Benutzer hinzufuegen</h2>
+      <form id="userForm" novalidate>
+        <input type="hidden" id="userId" name="id"/>
+        <div class="form-grid">
+          <div class="form-group"><label for="userFirstName">Vorname *</label><input type="text" id="userFirstName" name="firstName" required/></div>
+          <div class="form-group"><label for="userLastName">Nachname *</label><input type="text" id="userLastName" name="lastName" required/></div>
+          <div class="form-group"><label for="userUsername">Benutzername *</label><input type="text" id="userUsername" name="username" required autocomplete="off"/></div>
+          <div class="form-group"><label for="userEmail">E-Mail *</label><input type="email" id="userEmail" name="email" required autocomplete="off"/></div>
+          <div class="form-group"><label for="userPassword">Passwort</label><input type="password" id="userPassword" name="password" autocomplete="new-password" placeholder="Leer = nicht aendern"/></div>
+          <div class="form-group"><label for="userRole">Rolle *</label><select id="userRole" name="role" required><option value="customer">Kunde</option><option value="clerk">Clerk</option><option value="admin">Admin</option></select></div>
+          <div class="form-group"><label class="checkbox-label"><input type="checkbox" id="userActive" name="active" checked/><span>Aktiv</span></label></div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancelUserModal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal-overlay" id="deleteModalOverlay"></div>
+    <div class="modal-content modal-small">
+      <h2 id="deleteModalTitle">Benutzer loeschen</h2>
+      <p id="deleteModalText">Moechten Sie diesen Benutzer wirklich loeschen?</p>
+      <div class="modal-actions">
+        <button id="cancelDelete" class="btn btn-outline">Abbrechen</button>
+        <button id="confirmDelete" class="btn btn-danger">Loeschen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/movies.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

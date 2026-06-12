@@ -1,0 +1,516 @@
+[
+  {
+    "id": 1,
+    "movieId": 1,
+    "date": "2026-06-13",
+    "time": "14:00",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 45,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","booked","booked","available","available","booked","available","available","available"],
+        "C": ["available","booked","booked","available","available","available","available","booked","available","available"],
+        "D": ["available","available","available","available","booked","booked","available","available","available","available"],
+        "E": ["booked","available","available","available","available","available","available","available","booked","available"],
+        "F": ["available","available","available","booked","available","available","available","available","available","available"],
+        "G": ["available","available","available","available","available","booked","booked","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 2,
+    "movieId": 1,
+    "date": "2026-06-13",
+    "time": "17:30",
+    "hall": "Saal 2",
+    "totalSeats": 80,
+    "availableSeats": 62,
+    "format": "2D",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","booked","available","available","available","available","available","available"],
+        "C": ["available","available","available","available","available","available","available","available","available","available"],
+        "D": ["available","available","available","available","available","booked","available","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","available","booked","available","available","available","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 3,
+    "movieId": 1,
+    "date": "2026-06-13",
+    "time": "21:00",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 5,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["booked","booked","booked","booked","booked","booked","booked","booked","booked","booked"],
+        "B": ["booked","booked","booked","booked","booked","booked","booked","booked","booked","booked"],
+        "C": ["booked","booked","booked","booked","booked","booked","booked","booked","booked","booked"],
+        "D": ["booked","booked","booked","booked","booked","booked","booked","booked","booked","booked"],
+        "E": ["booked","booked","booked","booked","booked","booked","booked","booked","booked","booked"],
+        "F": ["booked","booked","booked","booked","booked","booked","booked","booked","booked","booked"],
+        "G": ["available","available","booked","booked","booked","booked","booked","available","booked","booked"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 4,
+    "movieId": 2,
+    "date": "2026-06-13",
+    "time": "20:00",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 70,
+    "format": "IMAX",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","booked","available","available","available","booked","available","available","available"],
+        "C": ["available","available","available","available","available","available","available","available","available","available"],
+        "D": ["available","booked","available","available","available","available","available","booked","available","available"],
+        "E": ["available","available","available","available","booked","booked","available","available","available","available"],
+        "F": ["available","available","available","available","available","available","available","available","available","available"],
+        "G": ["booked","available","available","available","available","available","available","available","booked","available"],
+        "H": ["available","available","available","booked","available","available","available","available","available","available"],
+        "I": ["available","available","available","available","available","available","available","available","available","available"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 5,
+    "movieId": 2,
+    "date": "2026-06-14",
+    "time": "15:30",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 88,
+    "format": "IMAX",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","available","booked","available","available","available","available","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","booked","available","available","available","available","booked","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["available","available","available","available","available","available","available","available","available","available"],
+        "I": ["available","available","available","available","available","available","available","available","available","available"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 6,
+    "movieId": 3,
+    "date": "2026-06-14",
+    "time": "15:00",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 55,
+    "format": "2D",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["booked","booked","available","available","available","available","available","available","booked","booked"],
+        "C": ["available","available","available","booked","available","available","booked","available","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","booked","available","available","available","available","available","available","booked","available"],
+        "F": ["available","available","available","available","booked","booked","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 7,
+    "movieId": 3,
+    "date": "2026-06-14",
+    "time": "19:30",
+    "hall": "Saal 2",
+    "totalSeats": 80,
+    "availableSeats": 72,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","available","available","booked","available","available","available","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","available","booked","available","available","available","available","booked","available","available"],
+        "F": ["available","available","available","available","available","available","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 8,
+    "movieId": 4,
+    "date": "2026-06-14",
+    "time": "19:00",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 30,
+    "format": "IMAX",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["booked","booked","booked","available","available","available","booked","booked","booked","booked"],
+        "B": ["booked","available","booked","booked","available","available","booked","available","booked","booked"],
+        "C": ["available","booked","booked","booked","booked","booked","booked","booked","available","booked"],
+        "D": ["booked","booked","available","booked","booked","booked","booked","available","booked","booked"],
+        "E": ["booked","booked","booked","booked","available","available","booked","booked","booked","booked"],
+        "F": ["available","booked","booked","booked","booked","booked","booked","booked","available","booked"],
+        "G": ["booked","booked","booked","available","booked","booked","available","booked","booked","booked"],
+        "H": ["booked","available","booked","booked","booked","booked","booked","available","booked","booked"],
+        "I": ["available","booked","booked","booked","booked","booked","booked","booked","booked","available"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 9,
+    "movieId": 5,
+    "date": "2026-06-15",
+    "time": "18:00",
+    "hall": "Saal 2",
+    "totalSeats": 80,
+    "availableSeats": 65,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","booked","available","available","booked","available","available","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","booked","available","available","available","available","available","booked","available","available"],
+        "F": ["available","available","available","available","available","available","available","available","available","available"],
+        "G": ["available","available","available","booked","booked","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 10,
+    "movieId": 6,
+    "date": "2026-06-15",
+    "time": "20:30",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 58,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","booked","available","available","booked","available","available","available","available","available"],
+        "C": ["available","available","available","booked","booked","available","available","available","available","available"],
+        "D": ["booked","available","available","available","available","available","available","available","booked","available"],
+        "E": ["available","available","available","available","available","booked","available","available","available","available"],
+        "F": ["available","available","booked","available","available","available","available","booked","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 11,
+    "movieId": 7,
+    "date": "2026-06-15",
+    "time": "16:00",
+    "hall": "Saal 2",
+    "totalSeats": 80,
+    "availableSeats": 74,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","available","available","available","available","available","available","available","available"],
+        "D": ["available","available","booked","available","available","available","booked","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","available","available","booked","available","booked","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 12,
+    "movieId": 8,
+    "date": "2026-06-13",
+    "time": "13:00",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 82,
+    "format": "IMAX",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","booked","available","available","available","available","booked","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","booked","available","available","booked","available","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["available","available","available","available","available","available","available","available","available","available"],
+        "I": ["available","available","available","available","available","available","available","available","available","available"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 13,
+    "movieId": 8,
+    "date": "2026-06-14",
+    "time": "17:00",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 45,
+    "format": "IMAX",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["booked","booked","available","available","booked","booked","available","available","booked","booked"],
+        "C": ["available","available","booked","booked","available","available","booked","booked","available","available"],
+        "D": ["booked","available","available","booked","available","booked","available","available","booked","available"],
+        "E": ["available","booked","booked","available","available","available","available","booked","booked","available"],
+        "F": ["booked","booked","available","available","booked","booked","available","available","booked","booked"],
+        "G": ["available","available","available","booked","available","available","booked","available","available","available"],
+        "H": ["booked","available","booked","available","booked","available","booked","available","booked","available"],
+        "I": ["available","available","available","available","available","available","available","available","available","available"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 14,
+    "movieId": 9,
+    "date": "2026-06-13",
+    "time": "16:00",
+    "hall": "Saal 2",
+    "totalSeats": 80,
+    "availableSeats": 52,
+    "format": "2D",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","booked","booked","available","available","booked","booked","available","available"],
+        "C": ["booked","available","available","available","available","available","available","available","available","booked"],
+        "D": ["available","available","available","booked","booked","booked","booked","available","available","available"],
+        "E": ["available","booked","available","available","available","available","available","available","booked","available"],
+        "F": ["available","available","available","available","booked","booked","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 15,
+    "movieId": 9,
+    "date": "2026-06-15",
+    "time": "14:30",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 70,
+    "format": "2D",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","available","booked","available","available","available","available","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","available","booked","available","available","available","available","available","available","available"],
+        "F": ["available","available","available","available","available","available","available","available","available","available"],
+        "G": ["available","available","available","available","booked","booked","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 16,
+    "movieId": 10,
+    "date": "2026-06-13",
+    "time": "18:30",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 38,
+    "format": "IMAX",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["booked","booked","available","available","booked","booked","available","available","booked","booked"],
+        "B": ["available","booked","booked","available","booked","booked","available","booked","booked","available"],
+        "C": ["booked","available","booked","booked","available","available","booked","booked","available","booked"],
+        "D": ["available","booked","available","booked","booked","booked","booked","available","booked","available"],
+        "E": ["booked","booked","booked","available","booked","booked","available","booked","booked","booked"],
+        "F": ["available","available","booked","booked","available","available","booked","booked","available","available"],
+        "G": ["booked","booked","available","booked","booked","available","booked","booked","available","booked"],
+        "H": ["available","booked","booked","available","booked","booked","available","booked","booked","available"],
+        "I": ["booked","available","booked","booked","available","available","booked","booked","available","booked"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 17,
+    "movieId": 10,
+    "date": "2026-06-15",
+    "time": "19:00",
+    "hall": "Saal 3",
+    "totalSeats": 100,
+    "availableSeats": 91,
+    "format": "IMAX",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H","I","J"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","available","available","available","available","available","available","available","available"],
+        "D": ["available","available","available","booked","available","available","booked","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","available","available","available","available","available","available","available","available","available"],
+        "G": ["available","booked","available","available","available","available","available","booked","available","available"],
+        "H": ["available","available","available","available","available","available","available","available","available","available"],
+        "I": ["available","available","available","available","available","available","available","available","available","available"],
+        "J": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 18,
+    "movieId": 11,
+    "date": "2026-06-13",
+    "time": "15:00",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 43,
+    "format": "2D",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["booked","booked","available","available","booked","booked","available","available","booked","booked"],
+        "C": ["available","available","booked","booked","available","available","booked","booked","available","available"],
+        "D": ["booked","available","available","available","booked","booked","available","available","available","booked"],
+        "E": ["available","available","booked","available","available","available","available","booked","available","available"],
+        "F": ["booked","booked","available","booked","available","available","booked","available","booked","booked"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 19,
+    "movieId": 12,
+    "date": "2026-06-14",
+    "time": "20:00",
+    "hall": "Saal 2",
+    "totalSeats": 80,
+    "availableSeats": 67,
+    "format": "2D",
+    "language": "OV",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","booked","available","available","available","available","available","booked","available","available"],
+        "D": ["available","available","available","available","booked","available","available","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","available","booked","booked","available","available","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  },
+  {
+    "id": 20,
+    "movieId": 12,
+    "date": "2026-06-15",
+    "time": "17:00",
+    "hall": "Saal 1",
+    "totalSeats": 80,
+    "availableSeats": 80,
+    "format": "2D",
+    "language": "Deutsch",
+    "seats": {
+      "rows": ["A","B","C","D","E","F","G","H"],
+      "seatsPerRow": 10,
+      "layout": {
+        "A": ["available","available","available","available","available","available","available","available","available","available"],
+        "B": ["available","available","available","available","available","available","available","available","available","available"],
+        "C": ["available","available","available","available","available","available","available","available","available","available"],
+        "D": ["available","available","available","available","available","available","available","available","available","available"],
+        "E": ["available","available","available","available","available","available","available","available","available","available"],
+        "F": ["available","available","available","available","available","available","available","available","available","available"],
+        "G": ["available","available","available","available","available","available","available","available","available","available"],
+        "H": ["vip","vip","vip","vip","vip","vip","vip","vip","vip","vip"]
+      }
+    }
+  }
+]

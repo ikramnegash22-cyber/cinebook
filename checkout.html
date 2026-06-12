@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kasse – CineBook</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="CineBook Startseite">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html">Filme</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li><a href="my-bookings.html">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="loginModal">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="container">
+      <div class="booking-steps" aria-label="Buchungsschritte">
+        <div class="step completed"><span class="step-num">✓</span><span class="step-label">Sitzplatz</span></div>
+        <div class="step-divider" aria-hidden="true"></div>
+        <div class="step active" aria-current="step"><span class="step-num">2</span><span class="step-label">Kasse</span></div>
+        <div class="step-divider" aria-hidden="true"></div>
+        <div class="step"><span class="step-num">3</span><span class="step-label">Bestaetigung</span></div>
+      </div>
+      <div class="checkout-layout">
+        <aside class="order-summary" aria-labelledby="orderSummaryTitle">
+          <h2 id="orderSummaryTitle">Bestelluebersicht</h2>
+          <div id="orderDetails" class="order-details"><p class="loading">Wird geladen...</p></div>
+        </aside>
+        <section class="payment-section" aria-labelledby="paymentTitle">
+          <h2 id="paymentTitle">Zahlung</h2>
+          <div class="payment-methods" role="radiogroup" aria-labelledby="paymentMethodLabel">
+            <p id="paymentMethodLabel" class="form-label"><strong>Zahlungsmethode</strong></p>
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="creditcard" checked/>
+              <span class="payment-method-label"><span class="payment-icon">💳</span> Kreditkarte</span>
+            </label>
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="paypal"/>
+              <span class="payment-method-label"><span class="payment-icon">🅿️</span> PayPal</span>
+            </label>
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="cash"/>
+              <span class="payment-method-label"><span class="payment-icon">💶</span> Barzahlung</span>
+            </label>
+          </div>
+          <!-- Kontakt-Bereich: immer sichtbar -->
+          <div id="contactSection" style="background:var(--color-bg-alt);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--spacing-md);margin-bottom:var(--spacing-md);">
+            <h3 style="margin-bottom:var(--spacing-sm);font-size:1rem;">📧 Buchungsbestaetigung</h3>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);margin-bottom:var(--spacing-sm);">Die Bestaetigung wird an Ihre E-Mail-Adresse gesendet.</p>
+            <div id="guestSection" class="hidden">
+              <div class="form-group" style="margin-bottom:var(--spacing-sm);">
+                <label for="guestName">Name (optional)</label>
+                <input type="text" id="guestName" name="guestName" placeholder="z.B. Tobias Becker" autocomplete="name"/>
+              </div>
+              <p style="font-size:0.8rem;color:var(--color-info);margin-bottom:var(--spacing-sm);">
+                👤 <strong>Gast-Buchung</strong> – Kein Account erforderlich!
+                <a href="#" id="showLoginFromCheckout" style="margin-left:4px;">Anmelden</a>
+              </p>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="bookingEmail">E-Mail-Adresse <span aria-hidden="true" style="color:var(--color-danger)">*</span></label>
+              <input type="email" id="bookingEmail" name="bookingEmail" required autocomplete="email" placeholder="ihre@email.de"/>
+              <span id="emailError" class="error-msg hidden" style="margin-top:4px;">Bitte geben Sie eine gueltige E-Mail-Adresse ein.</span>
+            </div>
+          </div>
+
+          <form id="paymentForm" novalidate>
+            <div id="creditcardFields" class="payment-fields">
+              <div class="form-group"><label for="cardName">Name auf der Karte</label><input type="text" id="cardName" name="cardName" autocomplete="cc-name" placeholder="Max Mustermann"/></div>
+              <div class="form-group"><label for="cardNumber">Kartennummer</label><input type="text" id="cardNumber" name="cardNumber" autocomplete="cc-number" placeholder="1234 5678 9012 3456" maxlength="19"/></div>
+              <div class="form-row">
+                <div class="form-group"><label for="cardExpiry">Ablaufdatum</label><input type="text" id="cardExpiry" name="cardExpiry" autocomplete="cc-exp" placeholder="MM/JJ" maxlength="5"/></div>
+                <div class="form-group"><label for="cardCvv">CVV</label><input type="text" id="cardCvv" name="cardCvv" autocomplete="cc-csc" placeholder="123" maxlength="4"/></div>
+              </div>
+            </div>
+            <div id="paypalFields" class="payment-fields hidden"><div class="paypal-info"><p>Sie werden nach dem Absenden zu PayPal weitergeleitet.</p></div></div>
+            <div id="cashFields" class="payment-fields hidden"><div class="cash-info"><p>Bitte zahlen Sie an der Kinokasse. Reservierung gueltig fuer 30 Minuten.</p></div></div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="agreeTerms" name="agreeTerms" required/>
+                <span>Ich akzeptiere die <a href="#">AGB</a> und <a href="#">Datenschutzbestimmungen</a></span>
+              </label>
+            </div>
+            <div id="paymentError" class="error-msg hidden" role="alert"></div>
+            <div class="checkout-actions">
+              <a href="seat-selection.html" class="btn btn-outline" id="backToSeats">Zurueck</a>
+              <button type="submit" id="submitPayment" class="btn btn-primary btn-lg">Jetzt buchen</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook</p>
+      <nav aria-label="Footer Navigation"><a href="#">Impressum</a><a href="#">Datenschutz</a></nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/emailjs.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

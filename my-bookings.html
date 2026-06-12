@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meine Buchungen - CineBook</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+  <style>
+    .bookings-page{padding:var(--spacing-lg) 0 var(--spacing-xl)}
+    .bookings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:var(--spacing-lg)}
+    .booking-card{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow var(--transition)}
+    .booking-card:hover{box-shadow:var(--shadow-md)}
+    .booking-card.is-cancelled{opacity:.65}
+    .booking-card-header{background:var(--color-primary);color:#fff;padding:10px var(--spacing-md);display:flex;justify-content:space-between;align-items:center;gap:var(--spacing-sm)}
+    .booking-card-header.cancelled{background:#777}
+    .booking-card-id{font-size:var(--font-size-sm);font-weight:700;letter-spacing:1px}
+    .booking-card-status{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,.25);white-space:nowrap}
+    .booking-card-body{padding:var(--spacing-md);flex:1}
+    .booking-card-title{font-size:var(--font-size-lg);font-weight:700;margin-bottom:var(--spacing-sm)}
+    .booking-card-meta{display:flex;flex-direction:column;gap:5px;font-size:var(--font-size-sm);color:var(--color-text-muted);margin-bottom:var(--spacing-sm)}
+    .booking-card-seats{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:var(--spacing-sm)}
+    .seat-chip{background:var(--color-bg-alt);border:1px solid var(--color-border);border-radius:4px;padding:2px 8px;font-size:.75rem;font-weight:600}
+    .booking-card-footer{padding:var(--spacing-sm) var(--spacing-md) var(--spacing-md);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--color-border);gap:var(--spacing-sm);flex-wrap:wrap}
+    .booking-price{font-size:var(--font-size-lg);font-weight:700;color:var(--color-primary)}
+    .stats-bar{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--spacing-md);margin-bottom:var(--spacing-lg)}
+    .stat-card{background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--spacing-md);text-align:center}
+    .stat-value{font-size:var(--font-size-xl);font-weight:700;color:var(--color-primary)}
+    .stat-label{font-size:var(--font-size-sm);color:var(--color-text-muted);margin-top:4px}
+    .cancel-warn{background:rgba(220,53,69,.08);border:1px solid rgba(220,53,69,.3);border-radius:var(--radius-sm);padding:var(--spacing-md);margin:var(--spacing-md) 0;font-size:var(--font-size-sm);color:var(--color-danger)}
+    .empty-state{text-align:center;padding:var(--spacing-xl) var(--spacing-md);color:var(--color-text-muted);grid-column:1/-1}
+    .empty-icon{font-size:4rem;margin-bottom:var(--spacing-md)}
+    .filter-row{display:flex;gap:var(--spacing-md);flex-wrap:wrap;align-items:flex-end;margin-bottom:var(--spacing-lg);background:var(--color-bg-alt);border-radius:var(--radius-md);padding:var(--spacing-md);border:1px solid var(--color-border)}
+    @media(max-width:600px){.bookings-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html">Filme</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li><a href="my-bookings.html" class="active">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+      <p class="modal-hint">Demo: <strong>user1 / user123</strong></p>
+    </div>
+  </div>
+
+  <div id="cancelModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="cancelTitle">
+    <div class="modal-overlay" id="cancelModalOverlay"></div>
+    <div class="modal-content" style="max-width:440px">
+      <button class="modal-close" id="closeCancelModal" aria-label="Schliessen">&times;</button>
+      <h2 id="cancelTitle">Buchung stornieren</h2>
+      <p>Moechten Sie diese Buchung wirklich stornieren?</p>
+      <div id="cancelBookingInfo" class="cancel-warn"></div>
+      <div class="cancel-warn">Diese Aktion kann nicht rueckgaengig gemacht werden.</div>
+      <div class="modal-actions">
+        <button id="cancelNo" class="btn btn-outline">Abbrechen</button>
+        <button id="cancelYes" class="btn btn-danger">Jetzt stornieren</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="container bookings-page">
+      <div class="page-header">
+        <h1>🎟️ Meine Buchungen</h1>
+        <p>Uebersicht und Verwaltung Ihrer Kinobuchungen</p>
+      </div>
+
+      <div id="loginPrompt" class="hidden" style="text-align:center;padding:48px 16px;max-width:420px;margin:0 auto">
+        <div style="font-size:3.5rem;margin-bottom:16px">🔐</div>
+        <h2>Bitte anmelden</h2>
+        <p style="color:var(--color-text-muted);margin:16px 0 24px">Melden Sie sich an, um Ihre Buchungen zu sehen und zu verwalten.</p>
+        <button class="btn btn-primary btn-lg" id="loginPromptBtn">Jetzt anmelden</button>
+        <p style="margin-top:16px;font-size:.875rem;color:var(--color-text-muted)">
+          Als Gast gebucht? <a href="#" id="guestToggle">Buchung per ID nachschlagen</a>
+        </p>
+        <div id="guestSearchBox" class="hidden" style="margin-top:24px;background:var(--color-bg-alt);border-radius:8px;padding:24px;border:1px solid var(--color-border);text-align:left">
+          <h3 style="margin-bottom:16px">Buchung nachschlagen</h3>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="guestBookingId" placeholder="Buchungs-ID (z.B. BK-ABC123)" style="flex:1;text-transform:uppercase"/>
+            <button id="guestLookupBtn" class="btn btn-primary">Suchen</button>
+          </div>
+          <div id="guestLookupResult" class="hidden" style="margin-top:16px"></div>
+        </div>
+      </div>
+
+      <div id="bookingsArea" class="hidden">
+        <div id="bookingStats" class="stats-bar"></div>
+        <div class="filter-row">
+          <div class="filter-group">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter">
+              <option value="">Alle</option>
+              <option value="confirmed">Bestaetigt</option>
+              <option value="cancelled">Storniert</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="sortFilter">Sortierung</label>
+            <select id="sortFilter">
+              <option value="newest">Neueste zuerst</option>
+              <option value="oldest">Aelteste zuerst</option>
+            </select>
+          </div>
+          <div style="margin-left:auto;align-self:center">
+            <span id="bookingsCount" style="font-size:.875rem;color:var(--color-text-muted)"></span>
+          </div>
+        </div>
+        <div id="bookingsGrid" class="bookings-grid" role="list"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook</p>
+      <nav aria-label="Footer Navigation">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/my-bookings.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

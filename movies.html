@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filme – CineBook</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/movies.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="CineBook Startseite">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html" class="active">Filme</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li><a href="my-bookings.html">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="loginModal">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+      <p class="modal-hint">Demo: <strong>user1 / user123</strong></p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="container">
+      <div class="page-header">
+        <h1>Alle Filme</h1>
+        <p>Entdecken Sie unser aktuelles Filmprogramm</p>
+      </div>
+      <section class="filter-bar" aria-label="Filter und Suche">
+        <div class="search-box">
+          <label for="movieSearch" class="sr-only">Film suchen</label>
+          <input type="search" id="movieSearch" placeholder="Film suchen..." aria-label="Film suchen"/>
+        </div>
+        <div class="filter-controls">
+          <div class="filter-group">
+            <label for="genreFilter">Genre</label>
+            <select id="genreFilter">
+              <option value="">Alle Genres</option>
+              <option value="Action">Action</option>
+              <option value="Drama">Drama</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Crime">Crime</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Comedy">Comedy</option>
+              <option value="History">History</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Romance">Romance</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="ratingFilter">Altersfreigabe</label>
+            <select id="ratingFilter">
+              <option value="">Alle</option>
+              <option value="PG-13">PG-13</option>
+              <option value="R">R</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="sortFilter">Sortieren</label>
+            <select id="sortFilter">
+              <option value="title">Titel A-Z</option>
+              <option value="title-desc">Titel Z-A</option>
+              <option value="duration">Dauer</option>
+              <option value="release">Erscheinungsjahr</option>
+            </select>
+          </div>
+          <button id="accessibleMovieFilter" class="btn btn-outline btn-sm" aria-pressed="false" title="Nur Filme mit barrierefreien Vorstellungen">
+            ♿ Barrierefrei
+          </button>
+          <button id="resetFilter" class="btn btn-outline btn-sm">Zuruecksetzen</button>
+        </div>
+      </section>
+      <div id="resultsInfo" class="results-info" aria-live="polite"></div>
+      <div id="moviesGrid" class="movies-grid" role="list">
+        <p class="loading">Filme werden geladen...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook</p>
+      <nav aria-label="Footer Navigation">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/tmdb.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

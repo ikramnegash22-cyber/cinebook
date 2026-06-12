@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filmdetails – CineBook</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/movies.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="CineBook Startseite">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html" class="active">Filme</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li><a href="my-bookings.html">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="loginModal">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+      <p class="modal-hint">Demo: <strong>user1 / user123</strong></p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html">Filme</a></li>
+          <li id="breadcrumbMovie" aria-current="page">Filmdetails</li>
+        </ol>
+      </nav>
+
+      <!-- Film-Hauptbereich -->
+      <div id="movieDetail">
+        <p class="loading">Film wird geladen...</p>
+      </div>
+
+      <!-- TMDB Bewertung -->
+      <div id="tmdbRating" style="display:none;margin:8px 0 16px;" aria-label="TMDB Bewertung"></div>
+
+      <!-- TMDB Budget/Einnahmen -->
+      <div id="tmdbExtra" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px;"></div>
+
+      <!-- Cast mit Fotos (TMDB) -->
+      <section class="section" aria-labelledby="castHeading" style="padding-top:0;">
+        <h2 id="castHeading" style="font-size:1.2rem;margin-bottom:12px;">Besetzung</h2>
+        <div id="tmdbCast" style="display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;">
+          <p style="color:var(--color-text-muted);font-size:0.875rem;">Wird geladen...</p>
+        </div>
+      </section>
+
+      <!-- Spielzeiten -->
+      <section id="movieShowtimes" class="section" aria-labelledby="showtimesHeading">
+        <h2 id="showtimesHeading">Spielzeiten</h2>
+        <div id="movieShowtimesList" class="showtimes-grid">
+          <p class="loading">Spielzeiten werden geladen...</p>
+        </div>
+      </section>
+
+      <!-- Aehnliche Filme (TMDB) -->
+      <section class="section" aria-labelledby="similarHeading">
+        <h2 id="similarHeading">Das koennte dir auch gefallen</h2>
+        <div id="tmdbSimilar" style="display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;">
+          <p style="color:var(--color-text-muted);font-size:0.875rem;">Wird geladen...</p>
+        </div>
+      </section>
+
+      <!-- Bewertungen -->
+      <section id="ratingsSection" class="section" aria-labelledby="ratingsHeading">
+        <h2 id="ratingsHeading">Bewertungen</h2>
+        <div id="ratingsSummary" style="display:flex;align-items:center;gap:16px;margin-bottom:16px;"></div>
+        <div id="ratingsList" style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;"></div>
+
+        <div id="addRatingSection" style="background:var(--color-bg-alt);border-radius:var(--radius-md);padding:var(--spacing-lg);border:1px solid var(--color-border);">
+          <h3>Eigene Bewertung abgeben</h3>
+          <p id="ratingLoginHint" class="hidden" style="color:var(--color-text-muted);margin-top:8px;">
+            <a href="#" id="ratingLoginLink">Anmelden</a> um eine Bewertung abzugeben.
+          </p>
+          <form id="ratingForm" class="hidden" novalidate style="margin-top:12px;">
+            <div style="margin-bottom:12px;">
+              <label style="font-weight:600;display:block;margin-bottom:4px;">Sterne:</label>
+              <div id="starSelector" style="display:flex;gap:8px;font-size:2rem;cursor:pointer;" role="radiogroup" aria-label="Bewertung">
+                <span data-star="1" aria-label="1 Stern" tabindex="0">☆</span>
+                <span data-star="2" aria-label="2 Sterne" tabindex="0">☆</span>
+                <span data-star="3" aria-label="3 Sterne" tabindex="0">☆</span>
+                <span data-star="4" aria-label="4 Sterne" tabindex="0">☆</span>
+                <span data-star="5" aria-label="5 Sterne" tabindex="0">☆</span>
+              </div>
+              <input type="hidden" id="selectedStars" value="0"/>
+            </div>
+            <div class="form-group">
+              <label for="ratingText">Kommentar (optional)</label>
+              <textarea id="ratingText" rows="3" placeholder="Ihre Meinung zu diesem Film..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Bewertung abgeben</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="trailerModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="trailerTitle">
+    <div class="modal-overlay" id="trailerOverlay"></div>
+    <div class="modal-content modal-video">
+      <button class="modal-close" id="closeTrailer" aria-label="Trailer schliessen">&times;</button>
+      <h2 id="trailerTitle" class="sr-only">Trailer</h2>
+      <div class="video-container">
+        <iframe id="trailerFrame" src="" frameborder="0" allowfullscreen title="Film Trailer"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook</p>
+      <nav aria-label="Footer Navigation">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/tmdb.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

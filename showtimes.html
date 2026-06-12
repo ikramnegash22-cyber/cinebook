@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spielzeiten – CineBook</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="CineBook Startseite">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="movies.html">Filme</a></li>
+          <li><a href="showtimes.html" class="active" aria-current="page">Spielzeiten</a></li>
+          <li><a href="my-bookings.html">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="loginModal">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+      <p class="modal-hint">Demo: <strong>user1 / user123</strong></p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="container">
+      <div class="page-header">
+        <h1>Spielzeiten</h1>
+        <p>Waehlen Sie Datum und Film fuer Ihre Vorstellung</p>
+      </div>
+      <section class="filter-bar" aria-label="Filter">
+        <div class="filter-controls">
+          <div class="filter-group">
+            <label for="dateFilter">Datum</label>
+            <input type="date" id="dateFilter"/>
+          </div>
+          <div class="filter-group">
+            <label for="movieFilter">Film</label>
+            <select id="movieFilter">
+              <option value="">Alle Filme</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="formatFilter">Format</label>
+            <select id="formatFilter">
+              <option value="">Alle Formate</option>
+              <option value="2D">2D</option>
+              <option value="IMAX">IMAX</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="langFilter">Sprache</label>
+            <select id="langFilter">
+              <option value="">Alle Sprachen</option>
+              <option value="Deutsch">Deutsch</option>
+              <option value="OV">OV</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="accessibleFilter">Barrierefreiheit</label>
+            <select id="accessibleFilter">
+              <option value="">Alle</option>
+              <option value="true">♿ Barrierefrei</option>
+            </select>
+          </div>
+          <button id="resetFilter" class="btn btn-outline btn-sm">Zuruecksetzen</button>
+        </div>
+      </section>
+      <div id="showtimesContainer" class="showtimes-container" aria-live="polite">
+        <p class="loading">Spielzeiten werden geladen...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook</p>
+      <nav aria-label="Footer Navigation">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

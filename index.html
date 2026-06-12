@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineBook – Ihr Kinobuchungssystem</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/accessibility.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="CineBook Startseite">🎬 <span>CineBook</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+          <li><a href="movies.html">Filme</a></li>
+          <li><a href="showtimes.html">Spielzeiten</a></li>
+          <li><a href="my-bookings.html">Meine Buchungen</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Design umschalten">🌙</button>
+        <button id="fontIncrease" class="btn-icon" aria-label="Schrift vergroessern">A+</button>
+        <div id="userMenu" class="user-menu">
+          <button id="loginBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="loginModal">Anmelden</button>
+          <div id="loggedInUser" class="logged-in-user hidden">
+            <span id="userGreeting"></span>
+            <button id="logoutBtn" class="btn btn-secondary">Abmelden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="loginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Schliessen">&times;</button>
+      <h2 id="loginTitle">Anmelden</h2>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Benutzername</label>
+          <input type="text" id="loginUsername" name="username" required autocomplete="username" placeholder="z.B. user1"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Passwort</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password" placeholder="Passwort"/>
+        </div>
+        <div id="loginError" class="error-msg hidden" role="alert"></div>
+        <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+      </form>
+      <p class="modal-hint">Demo: <strong>user1 / user123</strong> | Admin: <strong>admin / admin123</strong></p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero" aria-label="Willkommensbereich">
+      <div class="hero-content">
+        <h1>Willkommen bei CineBook</h1>
+        <p>Entdecken Sie aktuelle Filme, waehlen Sie Ihre Plaetze und buchen Sie bequem online.</p>
+        <div class="hero-buttons">
+          <a href="movies.html" class="btn btn-primary btn-lg">Filme entdecken</a>
+          <a href="showtimes.html" class="btn btn-secondary btn-lg">Spielzeiten ansehen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="featuredTitle">
+      <div class="container">
+        <h2 id="featuredTitle">Aktuelle Highlights</h2>
+        <div id="featuredMovies" class="movies-grid" role="list">
+          <p class="loading">Filme werden geladen...</p>
+        </div>
+        <div class="section-footer">
+          <a href="movies.html" class="btn btn-outline">Alle Filme ansehen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="showtimesTitle">
+      <div class="container">
+        <h2 id="showtimesTitle">Naechste Vorstellungen</h2>
+        <div id="upcomingShowtimes" class="showtimes-list" role="list">
+          <p class="loading">Spielzeiten werden geladen...</p>
+        </div>
+        <div class="section-footer">
+          <a href="showtimes.html" class="btn btn-outline">Alle Spielzeiten</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features" aria-labelledby="featuresTitle">
+      <div class="container">
+        <h2 id="featuresTitle">Warum CineBook?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true">🎟️</span>
+            <h3>Einfache Buchung</h3>
+            <p>In wenigen Schritten zum Ticket – schnell, sicher und bequem von zuhause.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true">💺</span>
+            <h3>Sitzplatzauswahl</h3>
+            <p>Waehlen Sie Ihren Lieblingsplatz – inklusive VIP-Bereich.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true">♿</span>
+            <h3>Barrierefrei</h3>
+            <p>Unser System ist vollstaendig barrierefrei und fuer alle Nutzer zugaenglich.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true">🔒</span>
+            <h3>Sicher &amp; zuverlaessig</h3>
+            <p>Ihre Daten sind bei uns sicher. Buchungen werden sofort bestaetigt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 CineBook – Alle Rechte vorbehalten</p>
+      <nav aria-label="Footer Navigation">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/tmdb.js"></script>
+  <script src="js/accessibility.js"></script>
+</body>
+</html>

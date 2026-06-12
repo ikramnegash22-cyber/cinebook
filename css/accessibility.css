@@ -1,0 +1,106 @@
+/* ============================================================
+   CineBook – Accessibility styles
+   ============================================================ */
+
+/* Focus styles - highly visible for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove default focus for mouse users, keep for keyboard */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --color-primary: #ff0000;
+  --color-text: #000000;
+  --color-bg: #ffffff;
+  --color-border: #000000;
+  --color-text-muted: #333333;
+}
+
+.high-contrast [data-theme="dark"] {
+  --color-text: #ffffff;
+  --color-bg: #000000;
+}
+
+/* Large font size support */
+body.font-large { font-size: 18px; }
+body.font-xlarge { font-size: 20px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen reader only (already in style.css but repeated for safety) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Accessible color contrast helpers */
+.text-contrast-high { color: #000 !important; }
+.bg-contrast-high { background: #fff !important; }
+
+/* Keyboard navigation indicator */
+.keyboard-focus-ring:focus-visible {
+  box-shadow: 0 0 0 4px var(--color-secondary);
+}
+
+/* Seat map - accessibility */
+.seat[aria-pressed="true"] {
+  outline: 3px solid var(--color-secondary);
+}
+
+/* Skip to content */
+.skip-link:focus {
+  position: fixed;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 99999;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ARIA live regions */
+[aria-live] {
+  min-height: 1px;
+}
+
+/* Disabled elements */
+[disabled], [aria-disabled="true"] {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
+/* Print accessibility */
+@media print {
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+  .sr-only { display: none !important; }
+}

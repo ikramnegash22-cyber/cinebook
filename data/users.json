@@ -1,0 +1,198 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@cinema.de",
+    "role": "admin",
+    "firstName": "Max",
+    "lastName": "Mustermann",
+    "createdAt": "2025-01-01",
+    "active": true,
+    "bookings": []
+  },
+  {
+    "id": 2,
+    "username": "clerk1",
+    "password": "clerk123",
+    "email": "clerk1@cinema.de",
+    "role": "clerk",
+    "firstName": "Anna",
+    "lastName": "Schmidt",
+    "createdAt": "2025-01-15",
+    "active": true,
+    "bookings": []
+  },
+  {
+    "id": 3,
+    "username": "clerk2",
+    "password": "clerk456",
+    "email": "clerk2@cinema.de",
+    "role": "clerk",
+    "firstName": "Peter",
+    "lastName": "Müller",
+    "createdAt": "2025-02-01",
+    "active": true,
+    "bookings": []
+  },
+  {
+    "id": 4,
+    "username": "user1",
+    "password": "user123",
+    "email": "user1@example.de",
+    "role": "customer",
+    "firstName": "Lisa",
+    "lastName": "Weber",
+    "createdAt": "2025-03-10",
+    "active": true,
+    "bookings": [
+      {
+        "bookingId": "BK-001",
+        "showtimeId": 1,
+        "movieId": 1,
+        "movieTitle": "Inception",
+        "date": "2026-06-13",
+        "time": "14:00",
+        "hall": "Saal 1",
+        "format": "2D",
+        "seats": ["B3", "B4"],
+        "ticketType": "normal",
+        "totalPrice": 25.00,
+        "bookedAt": "2026-06-10T14:23:00",
+        "status": "confirmed",
+        "userName": "Lisa Weber"
+      },
+      {
+        "bookingId": "BK-004",
+        "showtimeId": 8,
+        "movieId": 4,
+        "movieTitle": "Avengers: Endgame",
+        "date": "2026-06-14",
+        "time": "19:00",
+        "hall": "Saal 3",
+        "format": "IMAX",
+        "seats": ["E5", "E6"],
+        "ticketType": "normal",
+        "totalPrice": 27.00,
+        "bookedAt": "2026-06-11T09:15:00",
+        "status": "confirmed",
+        "userName": "Lisa Weber"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "username": "user2",
+    "password": "user456",
+    "email": "user2@example.de",
+    "role": "customer",
+    "firstName": "Tom",
+    "lastName": "Fischer",
+    "createdAt": "2025-04-05",
+    "active": true,
+    "bookings": [
+      {
+        "bookingId": "BK-002",
+        "showtimeId": 4,
+        "movieId": 2,
+        "movieTitle": "The Dark Knight",
+        "date": "2026-06-13",
+        "time": "20:00",
+        "hall": "Saal 3",
+        "format": "IMAX",
+        "seats": ["D2", "D3", "D4"],
+        "ticketType": "student",
+        "totalPrice": 27.00,
+        "bookedAt": "2026-06-09T18:45:00",
+        "status": "confirmed",
+        "userName": "Tom Fischer"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "username": "user3",
+    "password": "user789",
+    "email": "user3@example.de",
+    "role": "customer",
+    "firstName": "Maria",
+    "lastName": "Braun",
+    "createdAt": "2025-05-20",
+    "active": true,
+    "bookings": [
+      {
+        "bookingId": "BK-003",
+        "showtimeId": 16,
+        "movieId": 10,
+        "movieTitle": "Dune: Part Two",
+        "date": "2026-06-13",
+        "time": "18:30",
+        "hall": "Saal 3",
+        "format": "IMAX",
+        "seats": ["C5", "C6"],
+        "ticketType": "normal",
+        "totalPrice": 28.00,
+        "bookedAt": "2026-06-08T11:30:00",
+        "status": "confirmed",
+        "userName": "Maria Braun"
+      },
+      {
+        "bookingId": "BK-005",
+        "showtimeId": 12,
+        "movieId": 8,
+        "movieTitle": "Oppenheimer",
+        "date": "2026-06-13",
+        "time": "13:00",
+        "hall": "Saal 3",
+        "format": "IMAX",
+        "seats": ["H5"],
+        "ticketType": "vip",
+        "totalPrice": 21.00,
+        "bookedAt": "2026-06-11T20:00:00",
+        "status": "confirmed",
+        "userName": "Maria Braun"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "username": "user4",
+    "password": "pass123",
+    "email": "user4@example.de",
+    "role": "customer",
+    "firstName": "Jonas",
+    "lastName": "Klein",
+    "createdAt": "2025-06-01",
+    "active": true,
+    "bookings": [
+      {
+        "bookingId": "BK-006",
+        "showtimeId": 18,
+        "movieId": 11,
+        "movieTitle": "Spider-Man: No Way Home",
+        "date": "2026-06-13",
+        "time": "15:00",
+        "hall": "Saal 1",
+        "format": "2D",
+        "seats": ["A1", "A2", "A3"],
+        "ticketType": "student",
+        "totalPrice": 30.00,
+        "bookedAt": "2026-06-12T08:00:00",
+        "status": "confirmed",
+        "userName": "Jonas Klein"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "username": "user5",
+    "password": "pass456",
+    "email": "user5@example.de",
+    "role": "customer",
+    "firstName": "Sophie",
+    "lastName": "Wagner",
+    "createdAt": "2025-07-15",
+    "active": false,
+    "bookings": []
+  }
+]

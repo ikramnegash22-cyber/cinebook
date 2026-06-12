@@ -1,0 +1,132 @@
+/* CineBook - Responsive and Hamburger Menu Styles */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 200;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 98;
+  cursor: pointer;
+}
+.nav-overlay.is-active { display: block; }
+
+.btn { min-height: 44px; }
+.btn-sm { min-height: 36px; }
+.btn-icon { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+
+@media (max-width: 900px) {
+  .seat-selection-layout { grid-template-columns: 1fr; }
+  .booking-sidebar { position: static; grid-column: 1; grid-row: auto; }
+  .screen-container, .seat-legend, .seat-map { grid-column: 1; }
+  .movie-detail { grid-template-columns: 200px 1fr; gap: var(--spacing-lg); }
+  .checkout-layout { grid-template-columns: 1fr; }
+  .order-summary { position: static; }
+  .filter-controls { gap: var(--spacing-sm); }
+}
+
+@media (max-width: 700px) {
+  .header-inner { gap: var(--spacing-sm); }
+  .hamburger { display: flex; }
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: var(--color-header-bg);
+    z-index: 99;
+    transition: left 0.3s ease;
+    padding-top: calc(var(--header-height) + var(--spacing-md));
+    box-shadow: var(--shadow-lg);
+    overflow-y: auto;
+  }
+  .main-nav.is-open { left: 0; }
+  .main-nav ul { flex-direction: column; gap: 0; padding: var(--spacing-sm) 0; }
+  .main-nav ul li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .main-nav a {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+    color: #cccccc;
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+  }
+  .main-nav a:hover, .main-nav a.active { color: #fff; background: rgba(229,9,20,0.15); }
+  .main-nav a.active { border-left: 3px solid var(--color-primary); padding-left: calc(var(--spacing-lg) - 3px); }
+  .logo span { display: none; }
+  .header-actions { gap: 2px; margin-left: auto; }
+  #userGreeting { display: none; }
+  .hero { min-height: 280px; padding: var(--spacing-lg) var(--spacing-md); }
+  .hero p { font-size: 0.95rem; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .hero-buttons .btn { width: 100%; max-width: 300px; }
+  .movie-detail { grid-template-columns: 1fr; }
+  .movie-detail-poster { max-width: 200px; margin: 0 auto; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .movies-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--spacing-md); }
+  .showtimes-grid { grid-template-columns: 1fr; }
+  .booking-steps { padding: var(--spacing-sm); gap: 0; }
+  .step-divider { max-width: 30px; }
+  .step-label { font-size: 0.7rem; }
+  .section { padding: var(--spacing-lg) 0; }
+  .form-row { grid-template-columns: 1fr; }
+  .checkout-actions { flex-direction: column-reverse; }
+  .checkout-actions .btn { width: 100%; }
+  .confirmation-actions { flex-direction: column; align-items: center; }
+  .confirmation-actions .btn { width: 100%; max-width: 300px; }
+  .filter-bar { padding: var(--spacing-sm); }
+  .filter-controls { flex-direction: column; gap: var(--spacing-sm); }
+  .filter-group { width: 100%; }
+  .filter-group select { width: 100%; }
+  .search-box { width: 100%; min-width: unset; }
+  #accessibleMovieFilter, #resetFilter { width: 100%; }
+  .showtime-item { flex-direction: column; align-items: flex-start; }
+  .showtime-item .btn { width: 100%; }
+  .page-header { padding: var(--spacing-md) 0 var(--spacing-sm); }
+}
+
+@media (max-width: 480px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .movies-grid { grid-template-columns: 1fr 1fr; }
+  .seat { width: 26px; height: 26px; font-size: 0.55rem; }
+  .seat-accessible { width: 30px; height: 30px; }
+  .seat-map { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: var(--spacing-sm); }
+  .seat-row { min-width: max-content; }
+  .modal-content { padding: var(--spacing-lg) var(--spacing-md); width: 95%; }
+  .footer-inner { flex-direction: column; text-align: center; gap: var(--spacing-sm); }
+  .header-actions .btn-primary { padding: 6px 12px; font-size: 0.8rem; min-height: 38px; }
+}
+
+@media print {
+  .site-header, .site-footer, .btn, .booking-steps, .hamburger, .nav-overlay { display: none !important; }
+  .main-nav { position: static !important; left: 0 !important; height: auto !important; padding: 0 !important; box-shadow: none !important; }
+  .confirmation-card { border: 1px solid #ccc; }
+}
